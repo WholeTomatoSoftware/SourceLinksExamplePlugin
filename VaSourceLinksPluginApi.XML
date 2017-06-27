@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VaSourceLinksPluginApi</name>
+    </assembly>
+    <members>
+        <member name="T:WholeTomatoSoftware.SourceLinks.PluginFlags">
+            <summary>Flags returned by plugin instances that convey plugin behaviors to Source Links</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.OverrideExecute">
+            <summary>Specify OverrideExecute to have <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.Execute(WholeTomatoSoftware.SourceLinks.MarkerContext)"/> called in response to user double-click of link text in the editor.
+            <para>Flag is not compatible with <see cref="F:WholeTomatoSoftware.SourceLinks.PluginFlags.OverrideUrl"/>.</para></summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.OverrideUrl">
+            <summary>Specify OverrideUrl to have <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetUrl(WholeTomatoSoftware.SourceLinks.MarkerContext)"/> called to specify a URL to be opened in the web browser.
+            <para>Flag is not compatible with <see cref="F:WholeTomatoSoftware.SourceLinks.PluginFlags.OverrideExecute"/>.</para></summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.Configurable">
+            <summary>Specify Configurable to have <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.Configure"/> called when the user clicks the Configure button in the Source Links page of the options dialog.</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.DisableQuickInfoMerging">
+            <summary>Specify DisableQuickInfoMerging to prevent text returned from <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetTooltip(WholeTomatoSoftware.SourceLinks.MarkerContext)"/> being merged into Quick Info tooltips.</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.DisableTooltipTheming">
+            <summary>Specify DisableTooltipTheming to prevent Visual Studio theming from being applied to generated tooltips.
+            Applicable only in conjunction with DisableQuickInfoMerging.</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.GetTooltipInUIThread">
+            <summary>Specify GetTooltipInUIThread to have <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetTooltip(WholeTomatoSoftware.SourceLinks.MarkerContext)"/> be called from the UI thread.</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.OverrideRegex">
+            <summary>Specify OverrideRegex to have <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetRegex"/> called to specify a regular expression used to identify text editor links.</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.PluginFlags.OverrideContextExecute">
+            <summary>Specify OverrideContextExecute to have <see cref="M:WholeTomatoSoftware.SourceLinks.IPlugin.ContextExecute(WholeTomatoSoftware.SourceLinks.MarkerContext)"/> called when user requests context menu on marker.</summary>
+        </member>
+        <member name="T:WholeTomatoSoftware.SourceLinks.MarkerContext">
+            <summary>
+            Source Links creates a marker when text in the editor matches a link definition created by the user.
+            MarkerContext is an object used to convey the state of a marker instance to a plugin.
+            </summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.MarkerText">
+            <summary>Link text for which the marker is created</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.KeywordText">
+            <summary>Text of the keyword part of the marker</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.ValueText">
+            <summary>Text of the value part of the marker</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.LineText">
+            <summary>Text of the line</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.SolutionName">
+            <summary>Full path of the current solution file</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.ProjectName">
+            <summary>Full path of the project file where the marker resides</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.FileName">
+            <summary>Full path of the file where the marker resides</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.Line">
+            <summary>1-based line number where the tag resides</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.Column">
+            <summary>1-based column index where the tag starts within the line</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.Url">
+            <summary>User defined URL from the link or null when the link behavior is ShellExecute</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.Exe">
+            <summary>User defined executable from the link or null when the link behavior is not ShellExecute</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.ExeArgs">
+            <summary>User defined executable arguments from the link or null when the link behavior is not ShellExecute</summary>
+        </member>
+        <member name="T:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties">
+            <summary>
+            Names usable in method <see cref="M:WholeTomatoSoftware.SourceLinks.MarkerContext.GetNamedProperty(System.String)"/>
+            </summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.IsMouseEvent">
+            <summary>Boolean value which determines if the Mouse is source of current call</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.EventArgs">
+            <summary>EventArgs object from the event that caused the current call</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.MarkerBounds">
+            <summary>bounding rectangle of marker in rendering coordinates as double[4] { left, top, right, bottom }</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.MarkerBoundsScreen">
+            <summary>bounding rectangle of marker in screen coordinates as double[4] { left, top, right, bottom }</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.CaretBounds">
+            <summary>bounding rectangle of caret in rendering coordinates as double[4] { left, top, right, bottom }</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.CaretBoundsScreen">
+            <summary>bounding rectangle of caret in screen coordinates as double[4] { left, top, right, bottom }</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.ViewportBounds">
+            <summary>bounding rectangle of viewport in rendering coordinates as double[4] { left, top, right, bottom }</summary>
+        </member>
+        <member name="F:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties.ViewportBoundsScreen">
+            <summary>bounding rectangle of viewport in screen coordinates as double[4] { left, top, right, bottom }</summary>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.MarkerContext.GetNamedProperty(System.String)">
+            <summary>
+            Provides named properties related to the marker
+            </summary>
+            <param name="name">One of values from <see cref="T:WholeTomatoSoftware.SourceLinks.MarkerContext.NamedProperties"/></param>
+            <returns>Requested object or null if such property does not exist or it is unsupported</returns>
+        </member>
+        <member name="T:WholeTomatoSoftware.SourceLinks.IPluginFactory">
+            <summary>
+            Source Links loads your IPluginFactory implementation when Source Links initializes.
+            Implement IPluginFactory so that Source Links can get instances of your IPlugin implementation, 
+            and to list your plugin in the Source Links page of the Visual Assist Options dialog.
+            Dispose is called on shutdown of IDE.
+            </summary>
+        </member>
+        <member name="P:WholeTomatoSoftware.SourceLinks.IPluginFactory.Name">
+            <summary>
+            Name to appear in the plug-in dropdown of the link definition on the Source Links page of the Visual Assist Options dialog.
+            The value must be constant and can not change for example, from one version of the plugin to the next.
+            The name binds a pluginfactory with a link definition; link definitions bound to a plugin whose name 
+            has changed are not instantiated.
+            </summary>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPluginFactory.CreatePlugin(System.Guid)">
+            <summary>
+            Creates an IPlugin instance responsible for providing tooltip text for,
+            and optionally execution of, editor text associated with a link definition.
+            CreatePlugin is called whenever a plugin instance is needed for the link definition specified by linkId.
+            A plugin is requested in the following circumstances (if not already created and cached by Source Links):
+            1) when a user selects this plugin from the dropdown in the options dialog
+            2) when a user hovers over an associated link instance in the text editor
+            3) when a user double-clicks an associated link instance in the text editor
+            </summary>
+            <param name="linkId">Id of link definition with which the returned plugin will be associated.</param>
+            <returns>IPlugin instance.</returns>
+        </member>
+        <member name="T:WholeTomatoSoftware.SourceLinks.IPlugin">
+            <summary>
+            IPlugin defines the interface used by Source Links to interact with a plugin.
+            An instance of an IPlugin implementation is created for each link definition created by users of Source Links.
+            Plugin instances are created by an IPluginFactory implementation at the request of Source Links.
+            </summary>
+        </member>
+        <member name="P:WholeTomatoSoftware.SourceLinks.IPlugin.Flags">
+            <summary>
+            Or-ed values of PluginFlags enumeration.
+            The value returned by Flags should not change during the lifetime of a plugin instance.
+            </summary>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetTooltip(WholeTomatoSoftware.SourceLinks.MarkerContext)">
+            <summary>
+            Called when user hovers over associated link text.
+            </summary>
+            <param name="ctx">Properties of the text marker hovered over</param>
+            <returns>Tooltip string or XAML defining an object compliant with ContentControl.Content.</returns>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetUrl(WholeTomatoSoftware.SourceLinks.MarkerContext)">
+            <summary>
+            Called when user double-clicks on associated link text.
+            Also called from the link definition on the Source Links options page if IPlugin.Flags include PluginFlags.OverrideUrl.
+            </summary>
+            <param name="ctx">Properties of the double-clicked text marker, or null if called from the link definition</param>
+            <returns>URL to open in a browser</returns>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPlugin.Execute(WholeTomatoSoftware.SourceLinks.MarkerContext)">
+            <summary>
+            Called when user double-clicks on associated link text and IPlugin.Flags include PluginFlags.OverrideExecute.
+            Plugin is responsible for responding (executing an action) to double-click of associated link text.
+            </summary>
+            <param name="ctx">Properties of the double-clicked text marker</param>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPlugin.ContextExecute(WholeTomatoSoftware.SourceLinks.MarkerContext)">
+            <summary>
+            Called when user right-clicks or presses context menu shortcut on associated link.
+            </summary>
+            <param name="ctx">Properties of the text marker</param>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPlugin.GetRegex">
+            <summary>
+            Called to get a regular expression used to create links in the text editor if IPlugin.Flags include PluginFlags.OverrideRegex.
+            </summary>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPlugin.Configure">
+            <summary>
+            Called when user clicks the Configure button in the link definition on the Source Links options page and IPlugin.Flags include PluginFlags.Configurable.
+            Implement your configuration GUI here as a modal dialog.
+            </summary>
+        </member>
+        <member name="T:WholeTomatoSoftware.SourceLinks.IPluginSettingsStore">
+            <summary>
+            Represents a collection of plugin settings that is persisted when the collection is disposed
+            </summary>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPluginSettingsStore.GetValueOrDefault(System.String,System.String)">
+            <summary>
+            Gets the value associated with the specified key or the default value provided
+            </summary>
+            <param name="key">The key whose value to get</param>
+            <param name="defaultValue">The value to return if the key is not present</param>
+            <returns>The element with the specified key, or defaultValue if key is not present</returns>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.IPluginSettingsStore.GetValueOrDefaultAs``1(System.String,``0)">
+            <summary>
+            Gets the value associated with the specified key converted into a specified type, or the default value provided
+            </summary>
+            <param name="key">The key whose value to get</param>
+            <param name="defaultValue">The value to return if the key is not present</param>
+            <typeparam name="T">The type to convert the value into</typeparam>
+            <returns>The element with the specified key converted into type T, or defaultValue if key is not present</returns>
+        </member>
+        <member name="T:WholeTomatoSoftware.SourceLinks.PluginUtils">
+            <summary>
+            Helper methods for SourceLinks plugin implementers
+            </summary>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.EncodeXML(System.String,System.Boolean)">
+            <summary>Escapes special XML characters in input.</summary>
+            <param name="input">Input string to be wrapped</param>
+            <param name="attributeValue">if true, escapes all XML including quotes</param>
+            <returns>String with escaped special XML characters.</returns>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.WrapMarkupInXAML(System.String)">
+            <summary>Wraps simple markup to XAML.
+            <para/>You can combine selected HTML inline tags with XAML inline tags.
+            <para/>Supported HTML tags: H1-H6, B, STRONG, I, EM, U, DEL, INS, S, BR
+            <para/>HTML attributes are not supported, use XAML attributes.
+            </summary>
+            <param name="input">Input string to be wrapped</param>
+            <returns>XAML or null if conversion fails.</returns>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.WrapTextInXAML(System.String,System.String)">
+            <summary>Escapes special XML characters in input, 
+            replaces line breaks with LineBreak tags 
+            and puts the result into the root tag specified.
+            </summary>
+            <param name="input">Input string</param>
+            <param name="root">Tag name of root element or null/whitespace to avoid wrapping</param>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.GetSettingsStore``1(System.Guid)">
+            <summary>
+            Get the link definition-specific IPluginSettingsStore for a plugin. The store will contain
+            the last persisted state. Any changes are persisted when the store is disposed.
+            </summary>
+            <param name="linkId">The identifier of the link definition</param>
+            <typeparam name="T">The plugin type</typeparam>
+            <returns>The link definition-specific IPluginSettingsStore for a plugin</returns>
+            <exception cref="T:System.ArgumentException">linkId is Guid.Empty</exception>
+            <exception cref="T:System.InvalidOperationException">Type T does not define <see cref="T:System.Runtime.InteropServices.GuidAttribute"/> or defines one reserved for API sample</exception>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.GetSettingsStore``1">
+            <summary>
+            Get the IPluginSettingsStore for a plugin factory. The store will contain
+            the last persisted state. Any changes are persisted when the store is disposed.
+            </summary>
+            <typeparam name="T">The plugin factory type</typeparam>
+            <returns>The IPluginSettingsStore for the plugin factory</returns>
+            <exception cref="T:System.InvalidOperationException">Type T does not define <see cref="T:System.Runtime.InteropServices.GuidAttribute"/> or defines one reserved for API sample</exception>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.DeleteSettingsStore(System.Guid)">
+            <summary>
+            Deletes the setting stores for all plugins associated with the given linkId
+            </summary>
+            <param name="linkId">The identifier of the link definition</param>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.DeleteSettingsStore``1">
+            <summary>
+            Deletes the setting store for a plugin factory
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Type T does not define <see cref="T:System.Runtime.InteropServices.GuidAttribute"/> or defines one reserved for API sample</exception>
+        </member>
+        <member name="M:WholeTomatoSoftware.SourceLinks.PluginUtils.DeleteSettingsStore``1(System.Guid)">
+            <summary>
+            Deletes the link definition-specific IPluginSettingsStore for a plugin.
+            </summary>
+            <param name="linkId">The identifier of the link definition</param>
+            <exception cref="T:System.ArgumentException">linkId is Guid.Empty</exception>
+            <exception cref="T:System.InvalidOperationException">Type T does not define <see cref="T:System.Runtime.InteropServices.GuidAttribute"/> or defines one reserved for API sample</exception>
+        </member>
+    </members>
+</doc>
