@@ -173,6 +173,7 @@ namespace SourceLinksExamplePlugin
 			//		Only applicable if PluginFlags.DisableQuickInfoMerging is also specified.
 			// Include PluginFlags.GetTooltipInUIThread to force GetTooltip(MarkerContext) to be called from the UI thread.
 			//		By default, GetTooltip(MarkerContext) is called from a background thread so as to not block the UI thread.
+			// Include PluginFlags.OverrideContextExecute to handle right-clicks on link markers (support introduced in Visual Assist 10.9.2231.0 / 2017.08.15).
 
 			get
 			{
@@ -220,8 +221,6 @@ namespace SourceLinksExamplePlugin
 
 		public void ContextExecute(MarkerContext ctx)
 		{
-			// NOTE: ContextExecute is not yet supported.
-		
 			// ContextExecute will not get called in this example because Flags in this implementation don't
 			// include PluginFlags.OverrideContextExecute.
 			// If you include PluginFlags.OverrideContextExecute in Flags, ContextExecute is called when 
