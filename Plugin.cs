@@ -372,7 +372,7 @@ namespace SourceLinksExamplePlugin
 			// If PluginFlags.OverrideRegex is set, GetRegex is called after Configure.
 			Debug.WriteLine("Source Links calling GetRegex()");
 
-			return @"(?<Keyword>fooId|barId)\s*[:=]\s*(?<Value>\d+)";
+			return @"(?<Keyword>\bfooId|\bbarId)\s*[:=]\s*(?<Value>\d+)";
 		}
 
 		private void LoadSettings()
