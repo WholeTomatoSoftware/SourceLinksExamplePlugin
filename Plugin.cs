@@ -30,9 +30,10 @@ using WholeTomatoSoftware.SourceLinks;
  *		- run DebugView (available from http://technet.microsoft.com/en-us/sysinternals/bb896647.aspx)
  * 
  * When it comes time for distribution, install your plugin to its own directory and 
- * add the directory to the PluginPaths registry value: 
+ * add the directory to either the Plug-in Paths list on the Source Links page of the
+ * Visual Assist Options dialog or the PluginPaths registry value: 
  *		HKCU\Software\Whole Tomato\Visual Assist X\<IDE spec>\SourceLinks\PluginPaths
- * This string value contains a semicolon-delimited list of plugin paths.
+ *		(The string value contains a semicolon-delimited list of plugin paths.)
  * Source Links looks for plugins in the specified paths as well as their sub-directories. 
  * Aside from testing and development, do not install to the Visual Assist installation 
  * directory as it is deleted when Visual Assist is updated.
