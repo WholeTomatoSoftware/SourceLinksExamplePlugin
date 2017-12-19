@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Controls;
 using WholeTomatoSoftware.SourceLinks;
 
 /*
@@ -181,6 +182,7 @@ namespace SourceLinksExamplePlugin
 				Debug.WriteLine("Source Links getting Flags property");
 				return
 					PluginFlags.Configurable |  // we want Configure() to get called 
+					PluginFlags.OverrideContextExecute | // we want ContextExecute() to get called
 					PluginFlags.OverrideUrl;    // we want GetUrl(MarkerContext) to get called
 			}
 		}
@@ -222,11 +224,21 @@ namespace SourceLinksExamplePlugin
 
 		public void ContextExecute(MarkerContext ctx)
 		{
-			// ContextExecute will not get called in this example because Flags in this implementation don't
-			// include PluginFlags.OverrideContextExecute.
 			// If you include PluginFlags.OverrideContextExecute in Flags, ContextExecute is called when 
 			// the user right-clicks on a link marker.
 			Debug.WriteLine("Source Links calling ContextExecute()");
+
+			try
+			{
+				_contextMenu = new ExampleContextMenu(ctx)
+				{
+					IsOpen = true
+				};
+			}
+			catch (System.Exception /*ex*/)
+			{
+				System.Diagnostics.Debug.Assert(false, "ContextExecute threw an exception");
+			}
 		}
 
 		public string GetTooltip(MarkerContext ctx)
@@ -399,6 +411,7 @@ namespace SourceLinksExamplePlugin
 
 		private MyPluginFactory _factory;
 		private Guid _linkId;
+		private ContextMenu _contextMenu = null;
 
 		// serialized settings
 		private string _url;

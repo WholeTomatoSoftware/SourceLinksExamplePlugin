@@ -62,13 +62,19 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="SourceLinksPluginApi">
       <HintPath>VaSourceLinksPluginApi.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleContextMenu.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
