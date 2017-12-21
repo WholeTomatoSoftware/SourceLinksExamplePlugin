@@ -13,7 +13,7 @@ namespace SourceLinksExamplePlugin
 		{
 			public ExampleContextMenuItem(MarkerContext ctx, string text)
 			{
-				_ctx = ctx;
+				_ctx = ctx; 
 				// Header text might be dependent upon state in ctx MarkerContext
 				Header = text;
 				Command = this;
@@ -44,6 +44,19 @@ namespace SourceLinksExamplePlugin
 				Source = new Uri("pack://application:,,,/VaWPFTheming;component/ThemedControls.xaml", UriKind.Absolute)
 			});
 			Style = TryFindResource(typeof(ContextMenu)) as Style;
+
+            // if menu is executed using keyboard, use marker's bounding rectangle to position the menu
+            if (ctx != null && (bool)ctx.GetNamedProperty(MarkerContext.NamedProperties.IsMouseEvent) == false)
+            {
+                // get the bounding rectangle of the marker, it is returned as double[4] { left, top, right, bottom } 
+                double[] markerBounds = ctx.GetNamedProperty(MarkerContext.NamedProperties.MarkerBoundsScreen) as double[];
+                if (markerBounds != null && markerBounds.Length == 4)
+                {
+                    // apply rectangle as a PlacementRectangle
+                    PlacementRectangle = new Rect(new Point(markerBounds[0], markerBounds[1]), new Point(markerBounds[2], markerBounds[3]));
+                    Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+                }
+            }
 
 			// add context menu command items
 			Items.Add(new ExampleContextMenuItem(ctx, "Command _1")
